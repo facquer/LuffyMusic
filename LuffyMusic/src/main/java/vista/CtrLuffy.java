@@ -58,8 +58,8 @@ public class CtrLuffy {
 
     public void login() {
         RequestContext req = RequestContext.getCurrentInstance();
+        FacesContext context = FacesContext.getCurrentInstance();
         try {
-            FacesContext context = FacesContext.getCurrentInstance();
             if (this.gul.buscarUsuario(usuario, pass).size() > 0) {
                 context.getExternalContext().redirect("funciona.jsf");
                 FacesMessage facesMessage = new FacesMessage("Bienvenid@");
@@ -91,9 +91,8 @@ public class CtrLuffy {
         this.usuarioFinal.setUsuario(usuario);
         this.usuarioFinal.setCorreo(correo);
         this.usuarioFinal.setContrasenia(pass);
-
+        FacesContext context = FacesContext.getCurrentInstance();
         try {
-            FacesContext context = FacesContext.getCurrentInstance();
             this.gul.insertUsuario(usuarioFinal);
             context.getExternalContext().redirect("login.jsf");
             FacesMessage facesMessage = new FacesMessage("Bienvenid@");
